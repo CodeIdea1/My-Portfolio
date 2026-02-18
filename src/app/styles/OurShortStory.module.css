@@ -37,8 +37,12 @@
 }
 
 @media (max-width: 768px) {
+  .storySection {
+    height: 100vh;
+    will-change: transform;
+  }
 
-.storyImage {
-  object-position: 20%;
-}
+  .storyImage {
+    object-position: 20%;
+  }
 }

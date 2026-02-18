@@ -80,25 +80,49 @@ export default function ProjectsPage() {
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
   const descriptionRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   const [visibleDescriptions, setVisibleDescriptions] = useState<Set<number>>(new Set());
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
     
     imageRefs.current.forEach((img) => {
       if (img) {
-        gsap.fromTo(img, 
-          { x: '-50%' },
-          {
-            x: isMobile ? '11%' : '30%',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 0.5,
-            },
-          }
-        );
+        if (isMobile) {
+          gsap.fromTo(img, 
+            { y: '-28%' },
+            {
+              y: '10%',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: img,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.5,
+              },
+            }
+          );
+        } else {
+          gsap.fromTo(img, 
+            { x: '-50%' },
+            {
+              x: '30%',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.5,
+              },
+            }
+          );
+        }
       }
     });
 
@@ -137,21 +161,22 @@ export default function ProjectsPage() {
       <LettersAnimation letters={projectsLetters} />
       <section ref={sectionRef} className={styles.projectsSection}>
         <Swiper
-          modules={[FreeMode, Mousewheel]}
-          slidesPerView="auto"
+          modules={isMobile ? [] : [FreeMode, Mousewheel]}
+          slidesPerView={isMobile ? 1 : "auto"}
           spaceBetween={20}
-          freeMode={{
+          freeMode={isMobile ? false : {
             enabled: true,
             momentum: true,
             momentumRatio: 0.5,
             momentumVelocityRatio: 0.5
           }}
-          mousewheel={{
+          mousewheel={isMobile ? false : {
             forceToAxis: true,
             sensitivity: 1
           }}
           speed={600}
-          grabCursor={true}
+          grabCursor={!isMobile}
+          allowTouchMove={!isMobile}
           className={styles.imageGrid}
         >
           {projects.map((project, index) => (

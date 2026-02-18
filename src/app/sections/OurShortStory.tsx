@@ -25,15 +25,19 @@ export default function OurShortStory() {
     const timer = setTimeout(() => {
       // ✅ إنشاء GSAP Context
       const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth <= 768;
+      
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=100%',
-          scrub: 1,
+          end: isMobile ? '+=250%' : '+=100%',
+          scrub: isMobile ? 2 : 1,
           pin: true,
           pinSpacing: true,
-          // ✅ إضافة callback لمنع الأخطاء
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          fastScrollEnd: isMobile ? 1500 : true,
           onRefresh: (self) => {
             if (!section.parentNode) {
               self.kill(true);

@@ -44,37 +44,28 @@ export default function HeroSection() {
 
     const ctx = gsap.context(() => {
       if (isMobile) {
-        // الموبايل - أنيميشن سلس بscrub عالي
-        gsap.to(backgroundRef.current, {
-          y: '20%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 3,
-          }
-        });
-
+        // الموبايل - سكرول سلس واحترافي
         gsap.to([leftTextRef.current, rightTextRef.current], {
-          y: -100,
-          ease: 'none',
+          y: -50,
+          ease: 'power1.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top top',
-            end: 'bottom top',
-            scrub: 2.5,
+            end: '+=150%',
+            scrub: 2,
+            invalidateOnRefresh: true,
           }
         });
 
         gsap.to(titleRef.current, {
-          y: -120,
-          ease: 'none',
+          y: -80,
+          ease: 'power1.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top top',
-            end: 'bottom top',
-            scrub: 2.8,
+            end: '+=150%',
+            scrub: 2.5,
+            invalidateOnRefresh: true,
           }
         });
       } else {
