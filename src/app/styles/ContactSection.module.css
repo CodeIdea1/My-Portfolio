@@ -398,7 +398,7 @@
   .contactSection {
     min-height: 100vh;
     padding: 3rem 1.5rem;
-    background: var(--background-color, #0a0a0a);
+    background: var(--section-background);
   }
   
   .backgroundContainer {

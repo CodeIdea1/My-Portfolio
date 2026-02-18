@@ -23,21 +23,25 @@ export default function OurShortStory() {
     if (!section || !image || !shadow) return;
 
     const timer = setTimeout(() => {
-      // ✅ إنشاء GSAP Context
       const ctx = gsap.context(() => {
       const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        ScrollTrigger.normalizeScroll(true);
+      }
       
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: isMobile ? '+=250%' : '+=100%',
-          scrub: isMobile ? 2 : 1,
+          end: isMobile ? '+=200%' : '+=100%',
+          scrub: isMobile ? 0.5 : 1,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
-          invalidateOnRefresh: true,
-          fastScrollEnd: isMobile ? 1500 : true,
+          invalidateOnRefresh: false,
+          fastScrollEnd: true,
+          preventOverlaps: true,
           onRefresh: (self) => {
             if (!section.parentNode) {
               self.kill(true);
@@ -52,11 +56,14 @@ export default function OurShortStory() {
 
       tl.fromTo(image, 
         {
-          clipPath: 'circle(20% at 50% 50%)'
+          clipPath: 'circle(20% at 50% 50%)',
+          scale: 1.1
         },
         {
           clipPath: 'circle(100% at 50% 50%)',
-          duration: 0.7
+          scale: 1,
+          duration: 1,
+          ease: 'power2.inOut'
         }
       )
       .fromTo(shadow,
@@ -65,8 +72,10 @@ export default function OurShortStory() {
         },
         {
           opacity: 1,
-          duration: 0.3
-        }
+          duration: 0.5,
+          ease: 'power2.inOut'
+        },
+        '-=0.3'
       );
     }, section);
 
