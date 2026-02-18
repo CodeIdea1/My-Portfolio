@@ -35,3 +35,10 @@
   opacity: 0;
   z-index: 2;
 }
+
+@media (max-width: 768px) {
+
+.storyImage {
+  object-position: 20%;
+}
+}

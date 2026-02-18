@@ -75,27 +75,52 @@ export default function ProjectsSection() {
     const projectElements = projectsRef.current.filter(Boolean);
     if (projectElements.length === 0) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set(projectElements, {
-        opacity: 0,
-        y: 150
-      });
+    const isMobile = window.innerWidth <= 768;
 
-      projectElements.forEach((project, index) => {
-        gsap.to(project, {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: project,
-            start: 'top 90%',
-            end: 'top 50%',
-            scrub: 1,
-            toggleActions: 'play none none reverse'
-          }
+    const ctx = gsap.context(() => {
+      if (isMobile) {
+        // موبايل: أنيميشن بسيط بدون scrub
+        gsap.set(projectElements, {
+          opacity: 0,
+          y: 50
         });
-      });
+
+        projectElements.forEach((project) => {
+          gsap.to(project, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: project,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
+          });
+        });
+      } else {
+        // ديسكتوب: الأنيميشن الأصلي
+        gsap.set(projectElements, {
+          opacity: 0,
+          y: 150
+        });
+
+        projectElements.forEach((project) => {
+          gsap.to(project, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: project,
+              start: 'top 90%',
+              end: 'top 50%',
+              scrub: 1,
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
+      }
     }, section);
 
     return () => ctx.revert();

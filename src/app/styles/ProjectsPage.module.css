@@ -175,6 +175,8 @@ z-index: 999;
   
   .projectsSection {
     padding: 40px 0;
+    width: 100%;
+    overflow: hidden;
   }
   
   .imageGrid {
