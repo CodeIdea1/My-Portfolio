@@ -1,0 +1,263 @@
+.page {
+  min-height: 100vh;
+  background: var(--section-background);
+}
+
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 90px;
+}
+
+.titleContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.letterImage {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.subtitle {
+  font-size: 16.6px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.projectsSection {
+    min-height: 100vh;
+
+  padding: 80px 0;
+  background: var(--section-background);
+  margin: auto;
+  overflow: hidden;
+}
+
+.imageGrid {
+  padding: 0 5%;
+  overflow: visible !important;
+}
+
+.imageGrid :global(.swiper-wrapper) {
+  display: flex;
+  align-items: center;
+}
+
+.imageGrid :global(.swiper-slide) {
+  flex: 1.2;
+  width: calc(33.333% - 14px);
+  transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1), width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.imageGrid :global(.swiper-slide:nth-child(2)) {
+  flex: 1;
+}
+
+.imageGrid:has(.swiper-slide:hover) :global(.swiper-slide) {
+  flex: 0.5;
+}
+
+.imageGrid :global(.swiper-slide:hover) {
+  flex: 7 !important;
+}
+
+.imageBox {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  position: relative;
+}
+.imageBox::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+z-index: 999;
+  
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.552) , rgba(0, 0, 0, 0.394) , transparent );
+
+}
+
+.imageBox > div {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.imageBox img {
+  width: 190%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.imageBox:hover img {
+  transform: scale(1.05);
+}
+
+.hoverContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.769) 0%, rgba(0, 0, 0, 0.146) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 10;
+}
+
+.hoverTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color:white;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 1, 1), transform 0.2s cubic-bezier(0.4, 0, 1, 1);
+  will-change: opacity, transform;
+}
+
+.imageBox:hover .hoverTitle {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.hoverDescription {
+  font-size: 16px;
+  color:white;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 1, 1), transform 0.2s cubic-bezier(0.4, 0, 1, 1);
+  will-change: opacity, transform;
+}
+
+.imageBox:hover .hoverDescription {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+.mobileContent {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 0 30px;
+  }
+
+  .letterImage {
+    width: 60px;
+    height: 60px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+  
+  .projectsSection {
+    padding: 40px 0;
+  }
+  
+  .imageGrid {
+    padding: 0 20px;
+  }
+  
+  .imageGrid :global(.swiper-wrapper) {
+    flex-direction: column;
+    align-items: self-start;
+  }
+  
+  .imageGrid :global(.swiper-slide) {
+    width: 100% !important;
+    flex: 1.2;
+    transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .imageGrid:has(.swiper-slide:hover) :global(.swiper-slide) {
+    flex: 0.5;
+  }
+  
+  .imageGrid :global(.swiper-slide:hover) {
+    flex: 3 !important;
+  }
+  .swiper-wrapper {
+    align-items: flex-start;
+  }
+  
+  .projectCard {
+    width: 90%;
+    margin: 0 auto 40px;
+  }
+  
+  .imageBox {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 0;
+  }
+  
+  .hoverContent {
+    display: none;
+  }
+  
+  .mobileContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 15px 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    z-index: 1000;
+    min-height: 70px;
+  }
+  
+  .mobileTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    opacity: 1;
+    transform: translateY(10px);
+    transition: transform 0.6s ease;
+  }
+  
+  .mobileContent:has(.mobileDescription.visible) .mobileTitle {
+    transform: translateY(0);
+  }
+  
+  .mobileDescription {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 4px 0 0 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.6s ease, max-height 0.6s ease;
+  }
+  
+  .mobileDescription.visible {
+    opacity: 1;
+    max-height: 100px;
+  }
+}

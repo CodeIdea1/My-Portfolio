@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "contacts": {
+      ".write": true,
+      ".read": true
+    }
+  }
+}

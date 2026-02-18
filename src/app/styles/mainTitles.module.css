@@ -1,0 +1,35 @@
+.mainTitle {
+  display: inline-block;
+  cursor: default;
+  margin: 0;
+}
+
+.letterImage {
+  display: inline-block;
+  height: 180px;
+  width: auto;
+  object-fit: contain;
+  transform-origin: center bottom;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+[data-theme="dark"] .letterImage {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .letterImage {
+  filter: brightness(0) drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
+}
+
+.space {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .letterImage {
+    height: 80px;
+  }
+}

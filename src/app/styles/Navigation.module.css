@@ -1,0 +1,436 @@
+/* شريط التنقل */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.navContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--nav-text, white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.logoImage {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -2px;
+  margin-top: -5px;
+}
+
+[data-theme="dark"] .logoImage {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .logoImage {
+  filter: brightness(0);
+}
+
+.logo a:hover {
+  color: var(--nav-text, rgba(255, 255, 255, 0.7));
+  opacity: 0.7;
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 38px;
+  cursor: pointer;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2a2a2a;
+  border-radius: 25px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    9px 9px 16px rgba(0, 0, 0, 0.5),
+    -9px -9px 16px rgba(60, 60, 60, 0.4),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(60, 60, 60, 0.3);
+  overflow: hidden;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  left: 7px;
+  top: 4px;
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  border-radius: 50%;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+ 
+  z-index: 2;
+}
+
+.toggleSwitch input:checked + .slider {
+  background: #e0e0e0;
+  box-shadow: 
+    9px 9px 16px rgba(163, 177, 198, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(163, 177, 198, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.toggleSwitch input:checked + .slider::before {
+  transform: translateX(56px);
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  box-shadow: 
+    6px 6px 12px rgba(163, 177, 198, 0.4),
+    -6px -6px 12px rgba(255, 255, 255, 0.1),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.moonIcon,
+.sunIcon {
+  position: absolute;
+  width: 66px;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.moonIcon {
+  left: 39px;
+  opacity: 1;
+  transform: translateY(-50%) scale(1) rotate(0deg);
+  filter: brightness(0) invert(1);
+}
+
+.sunIcon {
+  right: 42px;
+  top: 21px;
+  opacity: 0.3;
+  transform: translateY(-50%) scale(0.8) rotate(-90deg);
+  filter: grayscale(100%) brightness(0.8);
+}
+
+.toggleSwitch input:checked ~ .slider .moonIcon {
+  opacity: 0.3;
+  transform: translateY(-50%) scale(0.8) rotate(90deg);
+  filter: grayscale(100%) brightness(0.8);
+  animation: none;
+}
+
+
+
+.toggleSwitch input:checked ~ .slider .sunIcon {
+  opacity: 1;
+  transform: translateY(-50%) scale(1) rotate(0deg);
+  filter: grayscale(100%) brightness(1.2);
+}
+
+
+
+
+.toggleSwitch input:checked + .slider:active {
+  box-shadow: 
+    inset 4px 4px 8px rgba(163, 177, 198, 0.3),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.toggleSwitch:active .slider::before {
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.toggleSwitch input:disabled + .slider {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--nav-text, white);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: 45px;
+  height: 45px;
+}
+
+.menuButton:hover {
+  background: rgba(128, 128, 128, 0.2);
+}
+
+/* أيقونة الهامبرغر */
+.hamburger {
+  width: 38px;
+  height: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--nav-text, white);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.hamburger span:nth-child(2) {
+  display: none;
+}
+
+/* حالة الفتح - تحويل إلى X */
+.menuButton.open .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menuButton.open .hamburger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.menuText {
+  font-weight: 500;
+}
+
+/* المنيو المنسدل */
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--section-background);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.menuOverlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.menuOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuContent {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: none;
+}
+
+.menuOverlay.open .menuItem {
+  animation: fadeInScale 0.5s ease forwards;
+}
+
+.menuLink {
+  display: inline-block;
+  color: var(--nav-text, white);
+  text-decoration: none;
+  font-size: 6rem;
+  font-weight: 300;
+  padding: .4rem;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.menuLink .textWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.menuLink .textWrapper p {
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
+  font-family: Le Murmure, sans-serif;
+}
+
+.menuLink .textWrapper p:nth-child(1) {
+  transform: translateY(0);
+}
+
+.menuLink .textWrapper p:nth-child(2) {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  color: #07E9F6;
+  transform: translateY(100%);
+}
+
+.menuLink:hover .textWrapper p:nth-child(1) {
+  transform: translateY(-157%);
+}
+
+.menuLink:hover .textWrapper p:nth-child(2) {
+  transform: translateY(-40px);
+}
+
+/* الأنيميشن */
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .navContent {
+    padding: 0 1rem;
+  }
+  
+  .logo a {
+    font-size: 1rem;
+  }
+  
+  .logoImage {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .toggleSwitch {
+    width: 75px;
+    height: 30px;
+  }
+  
+  .slider::before {
+    height: 22px;
+    width: 22px;
+    left: 5px;
+    top: 4px;
+  }
+  
+  .toggleSwitch input:checked + .slider::before {
+    transform: translateX(42px);
+  }
+  
+  .moonIcon,
+  .sunIcon {
+    width: 50px;
+  }
+  
+  .moonIcon {
+    left: 29px;
+  }
+  
+  .sunIcon {
+    right: 32px;
+    top: 16px;
+  }
+  
+  .toggleSwitch input:checked ~ .slider .sunIcon {
+    top: 16px;
+  }
+  
+  .menuButton {
+    width: 36px;
+    height: 36px;
+    padding: 0.3rem;
+  }
+  
+  .hamburger {
+    width: 28px;
+    height: 12px;
+  }
+  
+  .menuButton.open .hamburger span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  
+  .menuButton.open .hamburger span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+  
+  .menuLink {
+    font-size: 3rem;
+  }
+  
+  .menuContent {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuLink {
+    font-size: 3rem;
+  }
+  
+  .menuItem {
+    margin: 1.5rem 0;
+  }
+}

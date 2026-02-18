@@ -1,0 +1,64 @@
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--section-background);
+}
+
+@media (max-width: 768px) {
+  .section.alignEnd {
+    align-items: end;
+  }
+}
+
+.container {
+  text-align: center;
+}
+
+.lettersLink {
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.lettersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.letterImage {
+  width: auto;
+  height: 300px;
+  transition: transform 0.3s ease;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+[data-theme="dark"] .letterImage {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .letterImage {
+  filter: brightness(0);
+}
+
+@media (max-width: 768px) {
+
+  .section {
+  min-height: 60vh;
+  }
+
+  .section.alignEnd {
+    align-items: end;
+  }
+  .lettersContainer {
+    gap: 0;
+  }
+  
+  .letterImage {
+    height: 97px;
+  }
+}

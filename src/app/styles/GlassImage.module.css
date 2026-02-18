@@ -1,0 +1,62 @@
+/* GlassImage Styles - Commented Out - All styles related to glasses animation */
+
+/*
+.container {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 290px;
+  height: 290px;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-out, 
+              mask-image 0.6s ease-out, 
+              -webkit-mask-image 0.6s ease-out;
+  will-change: opacity, mask-image;
+  transform: rotate(4deg);
+  mask-image: radial-gradient(
+    circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+}
+
+.container:hover .background {
+  opacity: 1;
+  mask-image: radial-gradient(
+    circle 190px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    black 35%,
+    rgba(0, 0, 0, 0.5) 65%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 190px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    black 35%,
+    rgba(0, 0, 0, 0.5) 65%,
+    transparent 100%
+  );
+}
+*/

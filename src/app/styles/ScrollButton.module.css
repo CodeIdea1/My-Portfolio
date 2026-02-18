@@ -1,0 +1,28 @@
+.scrollButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-color, white);
+}
+
+.scrollButton:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.scrollButton:hover .arrow {
+  transform: translateY(2px);
+}

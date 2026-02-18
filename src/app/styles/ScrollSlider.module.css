@@ -1,0 +1,103 @@
+.section {
+  padding: 100px 0;
+  background: var(--section-background);
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.mainTitle {
+  text-align: center;
+  color: var(--text-color, white);
+}
+
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 90px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  width: fit-content;
+  /* تحسينات WebGL */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style;
+}
+
+.card {
+  min-width: 390px;
+  height: 420px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  /* تحسينات الأداء */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+.brandImage {
+  width: 450px;
+  height: 450px;
+  object-fit: contain;
+  opacity: 0.8;
+  /* تحسينات الصور */
+  will-change: opacity;
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+[data-theme="dark"] .brandImage {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .brandImage {
+  filter: brightness(0);
+}
+
+.card:hover .brandImage {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .section{
+    padding: 0;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  
+  .card {
+    min-width: 250px;
+    height: 180px;
+    padding: 20px;
+  }
+  
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+  .brandImage {
+    width: 200px;
+  }
+}

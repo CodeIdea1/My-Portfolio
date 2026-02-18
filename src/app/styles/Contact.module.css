@@ -1,0 +1,96 @@
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--section-background);
+}
+
+.container {
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--text-color, white);
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+  opacity: 0.8;
+  letter-spacing: 2px;
+}
+
+.contactLink {
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+
+.lettersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.letterImage {
+  width: auto;
+  height: 300px;
+  transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .letterImage {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .letterImage {
+  filter: brightness(0);
+}
+
+.letterImage:hover {
+  transform: scaleY(1.3);
+}
+
+.letterImage.disappearing {
+  animation: shrinkToDisappear 0.5s ease-out forwards;
+}
+
+.letterImage.appearing {
+  animation: growToAppear 1.2s ease-out forwards;
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+@keyframes shrinkToDisappear {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes growToAppear {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+
+  
+  .letterImage {
+    width: 60px;
+    height: 60px;
+  }
+}
