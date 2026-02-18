@@ -227,12 +227,20 @@ z-index: 999;
   
   .imageBox img {
     width: 100% !important;
-    height: 115% !important;
+    height: 100% !important;
     object-fit: cover;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    animation: mobileParallax 1s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+  }
+  
+  @keyframes mobileParallax {
+    from {
+      transform: translateY(-5%);
+    }
+    to {
+      transform: translateY(0%);
+    }
   }
   
   .hoverContent {

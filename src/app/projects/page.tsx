@@ -92,62 +92,44 @@ export default function ProjectsPage() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
     
-    if (isMobile) {
-      ScrollTrigger.config({
-        limitCallbacks: true,
-        syncInterval: 150
-      });
-    }
-    
-    imageRefs.current.forEach((img) => {
-      if (img) {
-        if (isMobile) {
-          gsap.fromTo(img, 
-            { y: '-10%' },
-            {
-              y: '3%',
-              ease: 'none',
-              scrollTrigger: {
-                trigger: img,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.2,
-                invalidateOnRefresh: false,
-                fastScrollEnd: true,
-              },
-            }
-          );
-        } else {
-          gsap.fromTo(img, 
-            { x: '-50%' },
-            {
-              x: '30%',
-              ease: 'none',
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.5,
-              },
-            }
-          );
-        }
-      }
-    });
-
+    // تعطيل GSAP تماماً في الموبايل
     if (isMobile) {
       descriptionRefs.current.forEach((desc, index) => {
         if (desc) {
-          ScrollTrigger.create({
-            trigger: desc,
-            start: 'top 80%',
-            onEnter: () => {
-              setVisibleDescriptions(prev => new Set(prev).add(index));
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  setVisibleDescriptions(prev => new Set(prev).add(index));
+                }
+              });
             },
-          });
+            { threshold: 0.5 }
+          );
+          observer.observe(desc);
         }
       });
+      return;
     }
+    
+    // GSAP فقط للديسكتوب
+    imageRefs.current.forEach((img) => {
+      if (img) {
+        gsap.fromTo(img, 
+          { x: '-50%' },
+          {
+            x: '30%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.5,
+            },
+          }
+        );
+      }
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
