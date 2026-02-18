@@ -69,7 +69,7 @@ const StackedCards = forwardRef<HTMLDivElement>((props, ref) => {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: isMobile ? '+=400%' : '+=200%',
+          end: isMobile ? '+=1500%' : '+=200%',
           scrub: 0.2,
           pin: true,
           pinSpacing: true,
@@ -79,30 +79,30 @@ const StackedCards = forwardRef<HTMLDivElement>((props, ref) => {
 
 .to(cardElements[1], {
         y: 0,
-        duration: 0.8,
+        duration: isMobile ? 3 : 0.8,
         ease: 'power2.out',
         force3D: true
       }, 0)
       .to(cardElements[0], {
         scale: 0.75,
         filter: 'blur(15px)',
-        duration: 0.8,
+        duration: isMobile ? 3 : 0.8,
         ease: 'power2.out',
         force3D: true
       }, 0)
       .to(cardElements[2], {
         y: 0,
-        duration: 0.8,
+        duration: isMobile ? 3 : 0.8,
         ease: 'power2.out',
         force3D: true
-      }, 0.8)
+      }, isMobile ? 3.5 : 0.8)
       .to(cardElements[1], {
         scale: 0.75,
         filter: 'blur(15px)',
-        duration: 0.8,
+        duration: isMobile ? 3 : 0.8,
         ease: 'power2.out',
         force3D: true
-      }, 0.8);
+      }, isMobile ? 3.5 : 0.8);
     }, section);
 
     ctxRef.current = ctx;

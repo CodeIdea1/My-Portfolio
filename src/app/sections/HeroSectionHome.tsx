@@ -44,30 +44,8 @@ export default function HeroSection() {
 
     const ctx = gsap.context(() => {
       if (isMobile) {
-        // الموبايل - بدون أنيميشن للباكجراوند
-        gsap.to([leftTextRef.current, rightTextRef.current], {
-          y: -80,
-          opacity: 0.3,
-          ease: 'power1.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-          }
-        });
-
-        gsap.to(titleRef.current, {
-          y: -100,
-          scale: 0.9,
-          ease: 'power1.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-          }
-        });
+        // الموبايل - بدون أي أنيميشن للسلاسة
+        return;
       } else {
         // أنيميشن الديسكتوب الأصلي
         gsap.to(backgroundRef.current, {
