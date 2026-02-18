@@ -92,20 +92,28 @@ export default function ProjectsPage() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
     
+    if (isMobile) {
+      ScrollTrigger.config({
+        limitCallbacks: true,
+        syncInterval: 150
+      });
+    }
+    
     imageRefs.current.forEach((img) => {
       if (img) {
         if (isMobile) {
           gsap.fromTo(img, 
-            { y: '-15%' },
+            { y: '-10%' },
             {
-              y: '5%',
+              y: '3%',
               ease: 'none',
               scrollTrigger: {
                 trigger: img,
                 start: 'top bottom',
                 end: 'bottom top',
-                scrub: 0.3,
+                scrub: 0.2,
                 invalidateOnRefresh: false,
+                fastScrollEnd: true,
               },
             }
           );

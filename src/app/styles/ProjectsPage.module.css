@@ -227,9 +227,12 @@ z-index: 999;
   
   .imageBox img {
     width: 100% !important;
-    height: 120% !important;
+    height: 115% !important;
     object-fit: cover;
     will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .hoverContent {
