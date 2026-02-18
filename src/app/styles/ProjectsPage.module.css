@@ -229,6 +229,7 @@ z-index: 999;
     width: 100% !important;
     height: 120% !important;
     object-fit: cover;
+    will-change: transform;
   }
   
   .hoverContent {

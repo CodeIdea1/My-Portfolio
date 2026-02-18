@@ -96,15 +96,16 @@ export default function ProjectsPage() {
       if (img) {
         if (isMobile) {
           gsap.fromTo(img, 
-            { y: '-28%' },
+            { y: '-15%' },
             {
-              y: '10%',
+              y: '5%',
               ease: 'none',
               scrollTrigger: {
                 trigger: img,
                 start: 'top bottom',
                 end: 'bottom top',
-                scrub: 0.5,
+                scrub: 0.3,
+                invalidateOnRefresh: false,
               },
             }
           );
