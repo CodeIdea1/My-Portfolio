@@ -151,64 +151,61 @@ export default function ParticlesBackground() {
 
     animate();
 
-    // GSAP ScrollTrigger للنقاط
-    gsap.to(particlesRef.current, {
-      opacity: 0,
-      scale: 0.3,
-      duration: 1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: canvas,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.2,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          scrollProgressRef.current = progress;
-          
-          particlesRef.current.forEach((particle) => {
-            // تلاشي وتصغير
-            particle.opacity = particle.baseOpacity * (1 - progress);
-            particle.scale = 1 - (progress * 0.7);
-            
-            // المرحلة الأولى (0-0.4): تبديل الأماكن بحركة سلسة
-            if (progress <= 0.4) {
-              const shuffleProgress = progress / 0.4;
-              const easeProgress = 1 - Math.pow(1 - shuffleProgress, 3); // ease-out cubic
-              
-              particle.x = particle.initialX + (particle.targetX - particle.initialX) * easeProgress;
-              particle.y = particle.initialY + (particle.targetY - particle.initialY) * easeProgress;
-            }
-            // المرحلة الثانية (0.4-1): الابتعاد نحو الأركان
-            else {
-              const disperseProgress = (progress - 0.4) / 0.6;
-              const easeProgress = Math.pow(disperseProgress, 2); // ease-in quad
-              
-              const moveDistance = easeProgress * 1200;
-              
-              switch(particle.corner) {
-                case 'topLeft':
-                  particle.x = particle.targetX - moveDistance;
-                  particle.y = particle.targetY - moveDistance;
-                  break;
-                case 'topRight':
-                  particle.x = particle.targetX + moveDistance;
-                  particle.y = particle.targetY - moveDistance;
-                  break;
-                case 'bottomLeft':
-                  particle.x = particle.targetX - moveDistance;
-                  particle.y = particle.targetY + moveDistance;
-                  break;
-                case 'bottomRight':
-                  particle.x = particle.targetX + moveDistance;
-                  particle.y = particle.targetY + moveDistance;
-                  break;
-              }
-            }
-          });
-        }
-      }
-    });
+    // إلغاء أنيميشن السكرول للنقاط
+    // gsap.to(particlesRef.current, {
+    //   opacity: 0,
+    //   scale: 0.3,
+    //   duration: 1,
+    //   ease: 'power2.out',
+    //   scrollTrigger: {
+    //     trigger: canvas,
+    //     start: 'top top',
+    //     end: 'bottom top',
+    //     scrub: 1.2,
+    //     onUpdate: (self) => {
+    //       const progress = self.progress;
+    //       scrollProgressRef.current = progress;
+    //       
+    //       particlesRef.current.forEach((particle) => {
+    //         particle.opacity = particle.baseOpacity * (1 - progress);
+    //         particle.scale = 1 - (progress * 0.7);
+    //         
+    //         if (progress <= 0.4) {
+    //           const shuffleProgress = progress / 0.4;
+    //           const easeProgress = 1 - Math.pow(1 - shuffleProgress, 3);
+    //           
+    //           particle.x = particle.initialX + (particle.targetX - particle.initialX) * easeProgress;
+    //           particle.y = particle.initialY + (particle.targetY - particle.initialY) * easeProgress;
+    //         }
+    //         else {
+    //           const disperseProgress = (progress - 0.4) / 0.6;
+    //           const easeProgress = Math.pow(disperseProgress, 2);
+    //           
+    //           const moveDistance = easeProgress * 1200;
+    //           
+    //           switch(particle.corner) {
+    //             case 'topLeft':
+    //               particle.x = particle.targetX - moveDistance;
+    //               particle.y = particle.targetY - moveDistance;
+    //               break;
+    //             case 'topRight':
+    //               particle.x = particle.targetX + moveDistance;
+    //               particle.y = particle.targetY - moveDistance;
+    //               break;
+    //             case 'bottomLeft':
+    //               particle.x = particle.targetX - moveDistance;
+    //               particle.y = particle.targetY + moveDistance;
+    //               break;
+    //             case 'bottomRight':
+    //               particle.x = particle.targetX + moveDistance;
+    //               particle.y = particle.targetY + moveDistance;
+    //               break;
+    //           }
+    //         }
+    //       });
+    //     }
+    //   }
+    // });
 
     const handleResize = () => {
       canvas.width = window.innerWidth;

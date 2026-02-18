@@ -46,41 +46,41 @@ export default function HeroSection() {
       if (isMobile) {
         // الموبايل - بدون أي أنيميشن للسلاسة
         return;
-      } else {
-        // أنيميشن الديسكتوب الأصلي
-        gsap.to(backgroundRef.current, {
-          y: '30%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-          }
-        });
-
-        gsap.to([leftTextRef.current, rightTextRef.current], {
-          y: -150,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 0.8,
-          }
-        });
-
-        gsap.to(titleRef.current, {
-          y: -200,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          }
-        });
       }
+
+      // أنيميشن الديسكتوب فقط
+      gsap.to(backgroundRef.current, {
+        y: '30%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.5,
+        }
+      });
+
+      gsap.to([leftTextRef.current, rightTextRef.current], {
+        y: -150,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.8,
+        }
+      });
+
+      gsap.to(titleRef.current, {
+        y: -200,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        }
+      });
     }, sectionRef);
 
     return () => ctx.revert();

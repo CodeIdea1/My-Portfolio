@@ -19,6 +19,14 @@ export default function AnimatedTitle({ text, className = '' }: AnimatedTitlePro
     const title = titleRef.current;
     if (!title) return;
 
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // موبايل: بدون أنيميشن
+      return;
+    }
+
+    // ديسكتوب: الأنيميشن الأصلي
     const chars = title.querySelectorAll(`.${styles.char}`);
     const totalChars = chars.length;
     

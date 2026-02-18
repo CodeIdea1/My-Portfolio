@@ -25,6 +25,13 @@
   background-size: 0% 100%;
 }
 
+@media (max-width: 768px) {
+  .char {
+    -webkit-text-fill-color: var(--text-color, #fff);
+    background-size: 100% 100%;
+  }
+}
+
 [data-theme="dark"] .char {
   -webkit-text-fill-color: rgba(255, 255, 255, 0.1);
   background-image: linear-gradient(#fff, #fff);
@@ -33,4 +40,11 @@
 [data-theme="light"] .char {
   -webkit-text-fill-color: rgba(0, 0, 0, 0.1);
   background-image: linear-gradient(#000, #000);
+}
+
+@media (max-width: 768px) {
+  [data-theme="dark"] .char,
+  [data-theme="light"] .char {
+    -webkit-text-fill-color: var(--text-color, #fff);
+  }
 }
