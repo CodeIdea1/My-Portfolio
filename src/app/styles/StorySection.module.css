@@ -36,4 +36,9 @@
   .container {
     padding: 0 10px;
   }
+  
+  .char {
+    -webkit-text-fill-color: var(--text-color, white);
+    background-size: 100% 100%;
+  }
 }

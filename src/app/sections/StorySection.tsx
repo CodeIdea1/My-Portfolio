@@ -17,25 +17,28 @@ export default function StorySection() {
     const title = titleRef.current;
     if (!title) return;
 
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // موبايل: بدون أنيميشن
+      return;
+    }
+
     const chars = title.querySelectorAll(`.${styles.char}`);
     if (chars.length === 0) return;
     
     const timer = setTimeout(() => {
-      // ✅ إنشاء GSAP Context
       const ctx = gsap.context(() => {
-      // إعداد الحالة الأولية
       chars.forEach(char => {
         gsap.set(char, { backgroundSize: '0% 100%' });
       });
 
-      // إنشاء timeline واحد
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: title,
           start: 'top 80%',
           end: 'top 40%',
           scrub: 1,
-          // ✅ إضافة callback لمنع الأخطاء
           onRefresh: (self) => {
             if (!title.parentNode) {
               self.kill(true);
@@ -44,11 +47,9 @@ export default function StorySection() {
         }
       });
 
-      // ✅ حفظ المراجع
       timelineRef.current = tl;
       scrollTriggerRef.current = tl.scrollTrigger || null;
 
-      // إضافة كل حرف للـ timeline بالتتالي
       chars.forEach((char, index) => {
         tl.to(char, {
           backgroundSize: '100% 100%',
@@ -61,22 +62,18 @@ export default function StorySection() {
       ctxRef.current = ctx;
     }, 100);
 
-    // ✅ Cleanup نهائي وشامل
     return () => {
       clearTimeout(timer);
-      // 1️⃣ إيقاف Timeline أولاً
       if (timelineRef.current) {
         timelineRef.current.kill();
         timelineRef.current = null;
       }
 
-      // 2️⃣ حذف ScrollTrigger
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill(true);
         scrollTriggerRef.current = null;
       }
 
-      // 3️⃣ حذف كل ScrollTriggers المرتبطة بالـ title
       const allTriggers = ScrollTrigger.getAll();
       allTriggers.forEach(trigger => {
         if (trigger.vars.trigger === title) {
@@ -84,13 +81,11 @@ export default function StorySection() {
         }
       });
 
-      // 4️⃣ Revert الـ Context
       if (ctxRef.current) {
         ctxRef.current.revert();
         ctxRef.current = null;
       }
 
-      // 5️⃣ تنظيف الـ styles بأمان
       chars.forEach(char => {
         try {
           if (char && document.body.contains(char)) {
@@ -101,7 +96,6 @@ export default function StorySection() {
         }
       });
 
-      // 6️⃣ Refresh ScrollTrigger بعد التنظيف
       requestAnimationFrame(() => {
         ScrollTrigger.refresh();
       });

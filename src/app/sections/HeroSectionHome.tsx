@@ -44,7 +44,7 @@ export default function HeroSection() {
 
     const ctx = gsap.context(() => {
       if (isMobile) {
-        // الموبايل - أنيميشن مبسط وسلس
+        // الموبايل - أنيميشن سلس بscrub عالي
         gsap.to(backgroundRef.current, {
           y: '20%',
           ease: 'none',
@@ -52,7 +52,7 @@ export default function HeroSection() {
             trigger: sectionRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 2,
+            scrub: 3,
           }
         });
 
@@ -63,7 +63,7 @@ export default function HeroSection() {
             trigger: sectionRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1.5,
+            scrub: 2.5,
           }
         });
 
@@ -74,7 +74,7 @@ export default function HeroSection() {
             trigger: sectionRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1.8,
+            scrub: 2.8,
           }
         });
       } else {
