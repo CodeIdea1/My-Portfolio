@@ -51,6 +51,8 @@ const StackedCards = forwardRef<HTMLDivElement>((props, ref) => {
     if (cardElements.length === 0) return;
     
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth <= 768;
+      
       cardElements.forEach((card, index) => {
         if (!card) return;
         
@@ -67,7 +69,7 @@ const StackedCards = forwardRef<HTMLDivElement>((props, ref) => {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=200%',
+          end: isMobile ? '+=400%' : '+=200%',
           scrub: 0.2,
           pin: true,
           pinSpacing: true,

@@ -44,18 +44,7 @@ export default function HeroSection() {
 
     const ctx = gsap.context(() => {
       if (isMobile) {
-        // أنيميشن مخصص للموبايل - ثابت تقريباً
-        gsap.to(backgroundRef.current, {
-          y: '5%',
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 3,
-          }
-        });
-
+        // الموبايل - بدون أنيميشن للباكجراوند
         gsap.to([leftTextRef.current, rightTextRef.current], {
           y: -80,
           opacity: 0.3,
