@@ -44,43 +44,74 @@ export default function HeroSection() {
 
     const ctx = gsap.context(() => {
       if (isMobile) {
-        // الموبايل - بدون أي أنيميشن للسلاسة
-        return;
+        // الموبايل - أنيميشن مبسط وسلس
+        gsap.to(backgroundRef.current, {
+          y: '20%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 2,
+          }
+        });
+
+        gsap.to([leftTextRef.current, rightTextRef.current], {
+          y: -100,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
+          }
+        });
+
+        gsap.to(titleRef.current, {
+          y: -120,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.8,
+          }
+        });
+      } else {
+        // أنيميشن الديسكتوب
+        gsap.to(backgroundRef.current, {
+          y: '30%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
+          }
+        });
+
+        gsap.to([leftTextRef.current, rightTextRef.current], {
+          y: -150,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.8,
+          }
+        });
+
+        gsap.to(titleRef.current, {
+          y: -200,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1,
+          }
+        });
       }
-
-      // أنيميشن الديسكتوب فقط
-      gsap.to(backgroundRef.current, {
-        y: '30%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.5,
-        }
-      });
-
-      gsap.to([leftTextRef.current, rightTextRef.current], {
-        y: -150,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.8,
-        }
-      });
-
-      gsap.to(titleRef.current, {
-        y: -200,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1,
-        }
-      });
     }, sectionRef);
 
     return () => ctx.revert();
