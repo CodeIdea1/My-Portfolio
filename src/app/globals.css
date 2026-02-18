@@ -64,6 +64,18 @@ body {
     -webkit-overflow-scrolling: touch;
   }
 
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }
 
 body {
