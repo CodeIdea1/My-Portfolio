@@ -65,10 +65,10 @@ const projects = [
 },
   {
     id: 8,
-    title: "Veyron",
+    title: "ChargeX",
     description: "Futuristic sports car concept.",
     image: "https://res.cloudinary.com/dytwa5cro/image/upload/v1771395124/p1_adwbvf.png",
-    link: "https://veyron-kjrw.vercel.app/"
+    link: "https://charge-x-iota.vercel.app/"
   }
 ];
 
