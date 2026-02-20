@@ -16,10 +16,10 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: 1,
-    title: "Stylish Accessories",
-    description: "Modern high-conversion e-commerce design.",
-    image: "https://res.cloudinary.com/dytwa5cro/image/upload/v1771395075/featuredprojects-stylish-accessories_ksdpld.png",
-    link: "https://stylish-accessories-3b34d.web.app/"
+    title: "ChargeX",
+    description: "Futuristic sports car concept.",
+    image: "https://res.cloudinary.com/dytwa5cro/image/upload/v1771395124/p1_adwbvf.png",
+    link: "https://charge-x-iota.vercel.app/"
   },
   {
     id: 2,
@@ -65,10 +65,10 @@ const projects = [
 },
   {
     id: 8,
-    title: "ChargeX",
-    description: "Futuristic sports car concept.",
-    image: "https://res.cloudinary.com/dytwa5cro/image/upload/v1771395124/p1_adwbvf.png",
-    link: "https://charge-x-iota.vercel.app/"
+    title: "Stylish Accessories",
+    description: "Modern high-conversion e-commerce design.",
+    image: "https://res.cloudinary.com/dytwa5cro/image/upload/v1771395075/featuredprojects-stylish-accessories_ksdpld.png",
+    link: "https://stylish-accessories-3b34d.web.app/"
   }
 ];
 

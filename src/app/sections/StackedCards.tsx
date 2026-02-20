@@ -30,7 +30,7 @@ const cards = [
     id: 3,
     title: "E-Commerce",
     backgroundImage: "https://res.cloudinary.com/dytwa5cro/image/upload/v1771395124/p1_adwbvf.png",
-    link: "https://veyron-kjrw.vercel.app/",
+    link: "https://charge-x-iota.vercel.app/",
     year: "2026",
     services: "Web Development, UI Design"
   }
