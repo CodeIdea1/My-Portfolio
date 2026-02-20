@@ -9,7 +9,7 @@ import SectionHeader from './components/SectionHeader';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import LettersAnimation from './components/LettersAnimation';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 const aboutLetters = [
   { char: 'A', src: 'https://res.cloudinary.com/dytwa5cro/image/upload/v1771392937/Ocapital_rqhucc.svg' },
@@ -25,6 +25,40 @@ const aboutLetters = [
 export default function Home() {
   const stackedCardsRef = useRef<HTMLDivElement>(null);
   useScrollToTop();
+  
+  useEffect(() => {
+    if (performance.navigation.type === 2) {
+      const scrollToStacked = sessionStorage.getItem('scrollToStacked');
+      if (scrollToStacked === 'true') {
+        sessionStorage.removeItem('scrollToStacked');
+        setTimeout(() => {
+          stackedCardsRef.current?.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }, 100);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted && sessionStorage.getItem('cardClicked') === 'true') {
+        sessionStorage.removeItem('cardClicked');
+        sessionStorage.setItem('scrollToStacked', 'true');
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        setTimeout(() => window.location.reload(), 0);
+      }
+    };
+
+    if (sessionStorage.getItem('cardClicked') === 'true') {
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
   
   return (
     <>

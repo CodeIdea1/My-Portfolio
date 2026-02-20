@@ -133,6 +133,9 @@ const StackedCards = forwardRef<HTMLDivElement>((props, ref) => {
               }}
               onClick={(e) => {
                 const cardElement = e.currentTarget as HTMLElement;
+                sessionStorage.setItem('cardClicked', 'true');
+                document.documentElement.style.scrollBehavior = 'auto';
+                window.history.scrollRestoration = 'manual';
                 navigateWithTransition(card.link, cardElement);
               }}
             >
